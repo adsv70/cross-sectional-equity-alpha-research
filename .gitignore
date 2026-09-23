@@ -1,0 +1,8 @@
+v13_cache/
+*.pkl
+v21_research_summary.md
+v13_interim_report.txt
+v13_digest.json
+.ipynb_checkpoints/
+__pycache__/
+.DS_Store
