@@ -44,11 +44,11 @@ end. Development and holdout are measured at the same fund size.
 | Strategy | Dev Sharpe | Holdout Sharpe | Dev IC | Holdout IC |
 |---|---:|---:|---:|---:|
 | **Composite, beta-neutral** | **+0.55** | **−0.86** | +0.012 | **−0.040** |
-| ML long/short | −1.11 | −1.48 | −0.001 | −0.027 |
-| Time-series momentum | −0.48 | +0.85 | — | — |
+| ML long/short | −1.13 | −1.50 | −0.001 | −0.027 |
+| Time-series momentum | −0.48 | +0.83 | — | — |
 
-The composite's sign flipped. Because the composite has **no fitted
-parameters** — it is a fixed rank-average with signs taken from published
+Holdout alpha was **−1.4%/yr**. The composite's sign flipped. Because the
+composite has **no fitted parameters** — it is a fixed rank-average with signs taken from published
 literature — this is not overfitting in the usual sense. There was nothing to
 overfit. It means the underlying **effect stopped working**, which is what the
 decay curve predicted.
@@ -68,8 +68,8 @@ All figures are net of modelled costs, measured over 180 walk-forward months
 |---|---:|---:|---|---:|---:|---:|
 | **Beta-neutral composite ($25M)** | **+2.6%** | **0.55** | [0.11, 0.98] | 0.03 | **+2.1%** | 1.72 |
 | Composite, long-tilted | +15.8% | 1.06 | [0.61, 1.64] | 0.91 | +0.7% | 0.61 |
-| ML long-only leg | +14.9% | 0.93 | [0.49, 1.48] | 1.01 | −1.6% | −1.51 |
-| ML long/short | −5.1% | −1.10 | [−1.55, −0.69] | 0.01 | −5.2% | −4.35 |
+| ML long-only leg | +14.8% | 0.92 | [0.49, 1.47] | 1.01 | −1.7% | −1.59 |
+| ML long/short | −5.2% | −1.13 | [−1.57, −0.72] | 0.01 | −5.3% | −4.46 |
 | *SPY (buy and hold)* | *+16.6%* | *1.06* | *[0.63, 1.62]* | *1.00* | — | — |
 
 Two things worth reading carefully:
@@ -78,8 +78,8 @@ Two things worth reading carefully:
 1.06 comes with a beta of 0.91 — it is the market wearing a strategy's name.
 The beta-neutral book has a lower Sharpe and far more alpha.
 
-**The gradient-boosted model is the worst performer.** Its IC is −0.0009
-(*t* = −0.11), which is zero, not backwards. It loses because it pays roughly
+**The gradient-boosted model is the worst performer.** Its IC is −0.0008
+(*t* = −0.10), which is zero, not backwards. It loses because it pays roughly
 10%/yr in trading costs to trade noise. A six-line theory-driven composite with
 no fitted parameters beats it comfortably.
 
@@ -87,8 +87,9 @@ no fitted parameters beats it comfortably.
 
 Comparing a market-neutral book's raw return to equities is the wrong test —
 nobody holds it *instead of* their equity allocation. Blended into a passive
-portfolio at a 35–60% weight, it moves portfolio Sharpe from **1.06 to 1.15**.
-That improvement's own confidence interval contains zero.
+portfolio at a 60% weight it moves portfolio Sharpe from **1.06 to 1.15**, at
++8.3%/yr and a −9.1% drawdown. That improvement's own 95% interval is
+[−0.11, +0.30] — it contains zero.
 
 ---
 
@@ -125,11 +126,11 @@ before the split:
 
 | Period | Alpha | Sharpe | Market |
 |---|---:|---:|---:|
-| 2010–2014 | **+2.8%** | 0.61 | +17.4% |
+| 2010–2014 | **+2.8%** | 0.62 | +17.4% |
 | 2015–2019 | +0.8% | 0.20 | +12.7% |
 | 2020–2023 | **+0.2%** | 0.17 | +16.1% |
 
-A 36-month rolling alpha falls from +3.4% to +0.3%, a trend of −0.36% per year
+A 36-month rolling alpha falls from +3.4% to +0.3%, a trend of −0.37% per year
 of elapsed time, and only 9% of rolling windows reach |*t*| > 2.
 
 This is the **opposite** of what overfitting produces. Overfitting flatters the
@@ -201,9 +202,6 @@ signal to fit.
   a *model generalises*. The machine-learning book's holdout is the test of
   generalisation, and it also failed — though it was already negative in
   development.
-
----
-
 
 ---
 
