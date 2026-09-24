@@ -61,9 +61,9 @@ to predict. `fwd_ret` in the panel is the next 21 trading days' return.
 ## 2. Building the signal
 
 **Signal / alpha.** A signal is any number one compute that one hope predicts
-returns. **Alpha** is the return one earn that cannot be explained by just
-taking obvious risks — the part that is genuinely yours. Pronounced like the
-Greek letter; the term comes from the intercept in a regression (see §6).
+returns. **Alpha** is the return one earns that cannot be explained by just
+taking obvious risks. Pronounced like the Greek letter; the term comes from
+the intercept in a regression (see §6).
 
 **Factor.** A characteristic shared by many stocks that explains returns:
 size, value, momentum, quality, low volatility. Factors are the well-known,
@@ -239,7 +239,7 @@ one can win 70% of months and still lose money if the 30% are big.
 month, compute the **Spearman rank correlation** between the predictions and
 what actually happened. Spearman means it only cares about *order*, not
 magnitude — did one rank the winners above the losers? Ranges −1 to +1. In
-cross-sectional equities, **0.02 to 0.05 is a genuinely useful signal** and 0.10
+cross-sectional equities, **0.02 to 0.05 is a useful signal** and 0.10
 would be extraordinary. Yours is −0.0217, meaning the model ranks slightly
 backwards, consistently.
 
@@ -260,9 +260,9 @@ which meaning is in play.
 the conventional "probably not luck" threshold (it corresponds to roughly a 5%
 chance of seeing something that large if the truth were zero).
 
-**p-value.** The probability of seeing a result this extreme if there were
-genuinely no effect. Below 0.05 is the conventional bar. Both t and p answer the
-same question in different units.
+**p-value.** The probability of seeing a result this extreme if there were no effect.
+Below 0.05 is the conventional bar. Both t and p answer the same question in
+different units.
 
 **Newey-West.** A correction to the t-statistic for when the observations are
 not fully independent of each other — which is true of consecutive months of a
@@ -310,8 +310,8 @@ which is correct practice.
 **Survivorship bias.** Only including companies that still exist. If one build a
 universe from today's S&P 500 and run it back to 2014, every company that went
 bankrupt is missing and the returns look great. The notebook mostly avoids
-this with a **point-in-time (PIT)** universe — reconstructing who was actually
-a member on each date — which is genuinely good work. But 180 of 784 tickers
+this with a **point-in-time (PIT)** universe, reconstructing who was actually
+a member on each date, which is good work. But 180 of 784 tickers
 were dropped because Yahoo has no data for them, and those are
 disproportionately the failures. So a residual version of the bias remains.
 
@@ -368,7 +368,7 @@ stock's underlying trend — from noisy observations. At each step it predicts,
 then corrects using the new observation, weighting the correction by how much
 it trusts each. Crucially it is a **filter**, not a **smoother**: the estimate
 at time t uses only data up to t, so it cannot look ahead. The implementation
-is correct and genuinely leak-free.
+is correct and leak-free.
 
 **Hidden Markov Model (HMM).** Assumes the world is in one of a few unobserved
 "states" (here: trending vs. choppy), each producing different return behaviour,
@@ -650,7 +650,7 @@ without turning, in which case more history still helps.
 
 **Weight stability.** How much a fitted weight moves over time, and how often
 it changes sign. A weight that flips repeatedly is tracking noise, not signal
-— this is how to tell overfitting from genuine estimation.
+— this is how to tell overfitting from true estimation.
 
 **Alpha decay.** A real effect being arbitraged away. Distinguished from
 overfitting by *when* it appears: overfitting flatters the period one tuned on
@@ -709,7 +709,7 @@ two different decades — the benchmark absorbs 2008 and the strategy does not.
 
 Publicly available daily price data on large-cap US equities does not support
 a market-neutral strategy distinguishable from zero after realistic costs.
-Several configurations had **genuinely positive IC and still lost money**,
+Several configurations had **positive IC and still lost money**,
 because a quintile book discards the middle of the ranking, the short leg
 carried uncompensated beta, and leverage multiplied a 10%/yr cost drag. Those
 were portfolio problems, not model problems — which mattered, because the
@@ -763,7 +763,7 @@ Impact scales with the square root of participation (trade size relative to a
 name's own daily volume). Linear impact overweights high-participation trades.
 The consequence used elsewhere in the project: total cost scales as
 dollars^1.5, so net Sharpe is `(gross − cost·√k)/vol` for a book scaled by *k*
-— which is why smaller books are genuinely cheaper, not just smaller.
+— which is why smaller books are cheaper, not just smaller.
 
 **"Dollar-neutral versus beta-neutral?"**
 One dollar long against one dollar short is not zero market exposure when the
@@ -781,7 +781,7 @@ though that improvement's own confidence interval contains zero.
 
 **"What is IC and what counts as good?"**
 Monthly Spearman rank correlation between prediction and realised return.
-0.02–0.05 is genuinely tradeable in cross-sectional equities; 0.10 would be
+0.02–0.05 is tradeable in cross-sectional equities; 0.10 would be
 extraordinary. This project's best was +0.018 on a single feature. Be ready
 for the follow-up: IC alone is not enough — the break-even IC at monthly
 turnover here was about 0.094, roughly eight times what the signal delivered.
